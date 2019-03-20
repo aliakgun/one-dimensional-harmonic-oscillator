@@ -28,7 +28,7 @@
  * 3)Get the F and m.
  * 4)Calculate the x(i+1) and V(i+1)
  * 5)Print them to the screen.
- * @bug velocirt is not correct
+ * @bug velocity(initial) due to time is not correct
  * @todo Output to file
  * Print the v and x to the separate files.
  * External force menu
@@ -36,6 +36,7 @@
  * 1)-kx
  * 2)x
  * 3)x^2
+ * Documentation of the code.
  */
 
 #include<stdio.h>///For standard input output organisation.

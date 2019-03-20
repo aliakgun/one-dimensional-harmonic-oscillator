@@ -31,6 +31,7 @@
  * @bug velocity(initial) due to time is not correct
  * @todo Output to file
  * Print the v and x to the separate files.
+ * Calculate energy of the oscillator E = 1/2mv^2 + 1/2kx^2
  * External force menu
  * Please chose the force acting to the particle:
  * 1)-kx

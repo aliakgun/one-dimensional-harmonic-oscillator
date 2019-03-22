@@ -42,8 +42,8 @@
  * Graphical analysis
  */
 
-#include<stdio.h> ///For standard input output organisation.
-#define NUMBEROFPARTICLE 1 ///Number of the particle.
+#include<stdio.h>///For standard input output organisation.
+#define NUMBEROFPARTICLE 1///Number of harmonica oscillator for preparing ovito output.
 
 typedef struct{
     double initial_position,
@@ -62,12 +62,12 @@ void drive(particle_t *particle);
 void calculate_force(particle_t *particle);
 void calculate_velocity(particle_t *particle);
 void calculate_position(particle_t *particle);
-void print(particle_t *particle,FILE *outp,FILE *ovitop);
+void print(particle_t *particle,FILE *outp,FILE *ovitop,FILE *positionp,FILE *forcep,FILE *velocityp);
 int main(){
-    FILE *outp,*ovitop;
+    FILE *outp,*ovitop,*positionp,*velocityp,*forcep;
     particle_t particle;
     drive(&particle);
-    print(&particle,outp,ovitop);
+    print(&particle,outp,ovitop,positionp,forcep,velocityp);
 }
 /**
  * @param particle(specifier address of the particle_t type)
@@ -145,12 +145,14 @@ void calculator(particle_t *particle){
  * @param particle(specifier address of the particle_t type)
  * @brief Writes the coordinates of the particle xyz format for
  * using ovito.
- * @see http://www.wikizeroo.net/index.php?q=aHR0cHM6Ly9lbi53aWtpcGVkaWEub3JnL3dpa2kvWFlaX2ZpbGVfZm9ybWF0
  * @return void
  */
-void print(particle_t *particle,FILE *outp,FILE *ovitop){
+void print(particle_t *particle,FILE *outp,FILE *ovitop,FILE *positionp,FILE *forcep,FILE *velocityp){
     outp = fopen("output.txt","w");
     ovitop = fopen("output.xyz","w");
+    positionp = fopen("position.txt","w");
+    forcep = fopen("force.txt","w");
+    velocityp = fopen("velocity.txt","w");
     set_initial_conditions(particle);
     fprintf(outp,"%s %18s %16s %11s","Force","Position","Velocity","Time\n");
     fprintf(ovitop,"%d\n\n",NUMBEROFPARTICLE);
@@ -159,7 +161,14 @@ void print(particle_t *particle,FILE *outp,FILE *ovitop){
         fprintf(outp,"%lf\t%lf\t%lf\t%lf\n",(*particle) . force,(*particle) . position,(*particle) . velocity,i);
         fprintf(ovitop,"C\t%lf\n",(*particle).position);
         fprintf(ovitop,"%d\n\n",NUMBEROFPARTICLE);
+        fprintf(positionp,"%f\t%lf\n",i,(*particle).position);
+        fprintf(velocityp,"%f\t%lf\n",i,(*particle).velocity);
+        fprintf(forcep,"%f\t%lf\nplot",i,(*particle).force);
     }//end
     fclose(outp);
     fclose(ovitop);
+    fclose(velocityp);
+    fclose(positionp);
+    fclose(forcep);
 }
+

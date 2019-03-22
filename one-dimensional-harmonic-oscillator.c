@@ -39,6 +39,7 @@
  * 3)x^2
  * Documentation of the code.
  * İnput arguments and program usage.
+ * Graphical analysis
  */
 
 #include<stdio.h>///For standard input output organisation.

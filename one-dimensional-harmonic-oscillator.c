@@ -3,7 +3,7 @@
  * @author ali akgun
  * @date 19.03.2019
  * @brief One dimensional harmonic oscillator.
- * *Program description
+ * Program description
  * ================================================
  * Generates position,force,velocity of the harmonic oscillator due to time.
  * Due to the forward derivative velocity and

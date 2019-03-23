@@ -163,7 +163,7 @@ void print(particle_t *particle,FILE *outp,FILE *ovitop,FILE *positionp,FILE *fo
         fprintf(ovitop,"%d\n\n",NUMBEROFPARTICLE);
         fprintf(positionp,"%f\t%lf\n",i,(*particle).position);
         fprintf(velocityp,"%f\t%lf\n",i,(*particle).velocity);
-        fprintf(forcep,"%f\t%lf\nplot",i,(*particle).force);
+        fprintf(forcep,"%f\t%lf\n",i,(*particle).force);
     }//end
     fclose(outp);
     fclose(ovitop);
